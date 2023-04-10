@@ -1,7 +1,7 @@
-import { useState, useCallback, useEffect } from 'react';
 import hash from 'object-hash';
-import { Annotation, AnnotationParams } from '../interfaces/annotation';
+import { useCallback, useEffect, useState } from 'react';
 import { generateRandomHash } from '../helpers/hashHelper';
+import { Annotation, AnnotationParams } from '../interfaces/annotation';
 
 const useAnnotations = (
 	defaultAnnotations: Array<Annotation>,
@@ -19,7 +19,7 @@ const useAnnotations = (
 
 	const getAnnotationsForPage = useCallback(
 		(page: number): Array<Annotation> => {
-			return annotations.filter((annotation: Annotation) => annotation.page === page);
+			return annotations?.filter((annotation: Annotation) => annotation.page === page);
 		},
 		[annotations],
 	);
@@ -50,7 +50,7 @@ const useAnnotations = (
 			}
 
 			setAnnotations((prevAnnotations) =>
-				prevAnnotations.map((prevAnnotation) => {
+				prevAnnotations?.map((prevAnnotation) => {
 					if (prevAnnotation.id === annotation.id) {
 						return annotation;
 					}
@@ -102,7 +102,7 @@ const useAnnotations = (
 				return;
 			}
 
-			setAnnotations((prevAnnotations) => prevAnnotations.filter((a) => a.id !== id));
+			setAnnotations((prevAnnotations) => prevAnnotations?.filter((a) => a.id !== id));
 			setLastActionHash(generateRandomHash());
 		},
 		[readonly],

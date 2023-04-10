@@ -1,8 +1,8 @@
 import { Rectangle } from 'tesseract.js';
-import { findIntersectingChildren, isCoordsEmpty } from './selectionHelpers';
 import { AnnotationParams } from '../interfaces/annotation';
 import { Entity } from '../interfaces/entity';
 import { PDFMetaData } from '../interfaces/pdf';
+import { findIntersectingChildren, isCoordsEmpty } from './selectionHelpers';
 
 const getImageAsBase64 = (targetCoords: Rectangle, context: CanvasRenderingContext2D): string => {
 	const { left, top, width, height } = targetCoords;
@@ -21,15 +21,20 @@ export const buildNerAnnotation = (
 	selectionChildren,
 	targetCoords: Rectangle,
 ): AnnotationParams => {
+	if (isCoordsEmpty(targetCoords)) {
+		return null;
+	}
 	const intersects = findIntersectingChildren(selectionChildren, targetCoords);
 	const markToAdd: AnnotationParams = {
 		page: pageNumber,
 		nerAnnotation: {
 			tokens: [],
 			textIds: [],
+			boundingBox: targetCoords,
 		},
 		entity: entity!,
 		index: entity!.index,
+
 	};
 
 	intersects.forEach((intersect) => {

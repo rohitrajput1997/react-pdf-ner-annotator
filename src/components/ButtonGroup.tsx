@@ -1,6 +1,4 @@
 import React from 'react';
-import plus from '../assets/icons/plus.svg';
-import minus from '../assets/icons/dash.svg';
 
 interface Props {
 	scale: number;
@@ -20,12 +18,12 @@ const ButtonGroup = ({ scale, setScale }: Props) => {
 			<ul className="fab-group__list">
 				<li className="fab-group__list-item">
 					<span role="button" className="fab-group__button" onClick={() => incrementScale(0.1)}>
-						<img className="fab-group__button-icon" src={plus} alt="Zoom in" />
+						{/* <img className="fab-group__button-icon" src={plus} alt="Zoom in" /> */}
 					</span>
 				</li>
 				<li className="fab-group__list-item">
 					<span role="button" className="fab-group__button" onClick={() => incrementScale(-0.1)}>
-						<img className="fab-group__button-icon" src={minus} alt="Zoom out" />
+						{/* <img className="fab-group__button-icon" src={minus} alt="Zoom out" /> */}
 					</span>
 				</li>
 			</ul>

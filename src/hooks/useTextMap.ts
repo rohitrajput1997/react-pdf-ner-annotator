@@ -7,7 +7,7 @@ const useTextMap = (annotations: Array<Annotation>) => {
 	const [textMap, setTextMap] = useState<Array<TextLayer>>([]);
 
 	useEffect(() => {
-		const pagesWithAnnotations = Array.from(new Set(annotations.map((annotation) => annotation.page)).values());
+		const pagesWithAnnotations = Array.from(new Set(annotations?.map((annotation) => annotation.page))?.values());
 		const textMapCleaned = textMap.filter((textMapItem) => pagesWithAnnotations.includes(textMapItem.page));
 
 		if (textMapCleaned.length < textMap.length) {

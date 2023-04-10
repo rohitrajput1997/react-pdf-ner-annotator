@@ -1,10 +1,10 @@
-import React, { useMemo, memo, useContext } from 'react';
-import { TextLayerItem } from '../../interfaces/textLayer';
-import { getTextMetrics } from '../../helpers/textMapHelpers';
-import Token from './Token';
-import Mark from './Mark';
-import { isBetween } from '../../helpers/generalHelpers';
+import React, { memo, useContext, useMemo } from 'react';
 import AnnotationContext from '../../context/annotationContext';
+import { isBetween } from '../../helpers/generalHelpers';
+import { getTextMetrics } from '../../helpers/textMapHelpers';
+import { TextLayerItem } from '../../interfaces/textLayer';
+import Mark from './Mark';
+import Token from './Token';
 
 interface Props {
 	textLayerItem: TextLayerItem;
@@ -21,7 +21,7 @@ const TokenContainer = ({ textLayerItem, tokens, offset, pageNumber }: Props) =>
 	const context = useContext(AnnotationContext);
 
 	const annotations = useMemo(() => {
-		return context.annotations.filter((annotation) => !!annotation.nerAnnotation && annotation.page === pageNumber);
+		return context.annotations?.filter((annotation) => !!annotation.nerAnnotation && annotation.page === pageNumber);
 	}, [context, pageNumber]);
 
 	const metrics = useMemo(() => getTextMetrics(text), [text]);

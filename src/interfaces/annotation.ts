@@ -18,6 +18,7 @@ export interface AnnotationParams {
 interface NerAnnotation {
 	textIds: Array<number>;
 	tokens: Array<string>;
+	boundingBox: Rectangle;
 }
 
 interface AreaAnnotation {
